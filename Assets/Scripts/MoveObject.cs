@@ -21,9 +21,10 @@ public class MoveObject : MonoBehaviour
     private GameObject pickedPrefab;
     private bool holdingObject = false;
 
-    private float currentX = 0f;
-    private float currentY = 0f;
-    private float yOffset = 0f;
+    private float currentX = 0f;           // X-axis rotation (tilt)
+    private float currentY = 0f;           // Y-axis rotation (spin)
+    private float yOffset = 0f;            // Vertical offset
+    private Vector3 offsetFromPlayer;      // Position offset for orbiting with T
 
     void Update()
     {
@@ -74,6 +75,10 @@ public class MoveObject : MonoBehaviour
             yOffset = 0f;
             holdingObject = true;
 
+            // Place the ghost directly in front of the player
+            offsetFromPlayer = player.forward * holdDistance;
+            ghostObject.transform.position = player.position + offsetFromPlayer;
+
             Debug.Log("Picked up: " + pickedPrefab.name);
         }
         else
@@ -96,10 +101,10 @@ public class MoveObject : MonoBehaviour
 
     void HandleMovement()
     {
-        // Desired position in front of player
-        Vector3 desiredPos = player.position + player.forward * holdDistance + Vector3.up * yOffset;
+        // Position based on player and offset
+        Vector3 desiredPos = player.position + offsetFromPlayer + Vector3.up * yOffset;
 
-        // Check collision before moving
+        // Check collision
         Collider[] hits = Physics.OverlapBox(desiredPos, ghostObject.transform.localScale / 2f, ghostObject.transform.rotation, collisionLayer);
         if (hits.Length == 0)
         {
@@ -113,26 +118,33 @@ public class MoveObject : MonoBehaviour
 
         if (scroll != 0)
         {
-            yOffset += scroll * 0.1f; // adjust speed if needed
+            yOffset += scroll * 0.1f;
             yOffset = Mathf.Clamp(yOffset, -maxYOffset, maxYOffset);
         }
     }
 
     void HandleRotation()
     {
-        // Base rotation matches player
         float baseYRotation = player.eulerAngles.y;
 
-        // Q/E for fine adjustments
+        // Q rotates left/right (Y-axis)
         if (Keyboard.current.qKey.wasPressedThisFrame)
-            currentY += rotationIncrement;
+            currentY -= rotationIncrement;
 
+        // E rotates up/down (X-axis)
         if (Keyboard.current.eKey.wasPressedThisFrame)
             currentX += rotationIncrement;
+
+        // T rotates 90° around player (orbit)
+        if (Keyboard.current.tKey.wasPressedThisFrame)
+        {
+            offsetFromPlayer = Quaternion.Euler(0, 90f, 0) * offsetFromPlayer;
+        }
 
         currentX = Mathf.Repeat(currentX, 360f);
         currentY = Mathf.Repeat(currentY, 360f);
 
+        // Apply rotation in place
         ghostObject.transform.rotation = Quaternion.Euler(currentX, baseYRotation + currentY, 0f);
     }
 

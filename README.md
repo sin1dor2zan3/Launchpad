@@ -14,7 +14,7 @@ GitHub Link - https://github.com/sin1dor2zan3/Launchpad
 
 
 
-. Collect all three cylinders by using planks to climb up surfaces and solve puzzles.
+* Collect all three cylinders by using planks to climb up surfaces and solve puzzles.
 
 
 

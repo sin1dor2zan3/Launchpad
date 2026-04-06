@@ -2280,8 +2280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragObject
   player: {fileID: 687936723}
-  grabDistance: 3
-  holdDistance: 2
+  grabDistance: 2
+  holdDistance: 1
   maxYOffset: 1
   pickableLayer:
     serializedVersion: 2

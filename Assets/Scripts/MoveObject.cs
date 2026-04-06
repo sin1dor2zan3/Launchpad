@@ -4,15 +4,13 @@ using UnityEngine.InputSystem;
 public class MoveObject : MonoBehaviour
 {
     [Header("Player Settings")]
-    public Transform player;           // Player transform
-    public float grabDistance = 3f;    // Max distance to pick object
-    public float holdDistance = 2f;    // Distance in front of player
-    public float maxYOffset = 1f;      // Max up/down from player Y
+    public Transform player;
+    public float grabDistance = 3f;
+    public float holdDistance = 2f;
+    public float maxYOffset = 1f;
 
     [Header("Drag Settings")]
-    public LayerMask pickableLayer;    // Pickable objects
-    public Material ghostMaterial;     // Transparent ghost
-    public LayerMask collisionLayer;   // Layers to prevent movement through
+    public Material ghostMaterial;
 
     [Header("Rotation Settings")]
     public float rotationIncrement = 15f;
@@ -21,10 +19,12 @@ public class MoveObject : MonoBehaviour
     private GameObject pickedPrefab;
     private bool holdingObject = false;
 
-    private float currentX = 0f;           // X-axis rotation (tilt)
-    private float currentY = 0f;           // Y-axis rotation (spin)
-    private float yOffset = 0f;            // Vertical offset
-    private Vector3 offsetFromPlayer;      // Position offset for orbiting with T
+    private float currentX = 0f; // X-axis rotation (tilt)
+    private float currentY = 0f; // Y-axis rotation (spin)
+    private float yOffset = 0f;   // Vertical offset
+    private Vector3 offsetFromPlayer;
+
+    private bool ghostMode = false;
 
     void Update()
     {
@@ -33,21 +33,34 @@ public class MoveObject : MonoBehaviour
             HandleMovement();
             HandleRotation();
             HandleScroll();
+
+            // Keep ghost mode active while holding
+            if (!ghostMode)
+            {
+                ghostMode = true;
+                SetGhostColliders(true);
+            }
         }
 
-        if (Keyboard.current.rKey.wasPressedThisFrame)
+        // Pick up or place object with Left Mouse Button
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (!holdingObject)
                 TryPickUp();
             else
                 PlaceObject();
         }
+
+        // Orbit around player with Right Mouse Button
+        if (holdingObject && Mouse.current.rightButton.wasPressedThisFrame)
+        {
+            offsetFromPlayer = Quaternion.Euler(0, 90f, 0) * offsetFromPlayer;
+        }
     }
 
     void TryPickUp()
     {
         GameObject[] pickables = GameObject.FindGameObjectsWithTag("Pickable");
-
         GameObject closest = null;
         float closestDist = grabDistance;
 
@@ -64,8 +77,6 @@ public class MoveObject : MonoBehaviour
         if (closest != null)
         {
             pickedPrefab = closest;
-
-            // Create ghost
             ghostObject = Instantiate(pickedPrefab);
             SetGhostMaterial(ghostObject);
             pickedPrefab.SetActive(false);
@@ -75,9 +86,11 @@ public class MoveObject : MonoBehaviour
             yOffset = 0f;
             holdingObject = true;
 
-            // Place the ghost directly in front of the player
             offsetFromPlayer = player.forward * holdDistance;
             ghostObject.transform.position = player.position + offsetFromPlayer;
+
+            ghostMode = true;
+            SetGhostColliders(true);
 
             Debug.Log("Picked up: " + pickedPrefab.name);
         }
@@ -97,25 +110,21 @@ public class MoveObject : MonoBehaviour
         ghostObject = null;
         pickedPrefab = null;
         holdingObject = false;
+
+        ghostMode = false;
     }
 
     void HandleMovement()
     {
-        // Position based on player and offset
-        Vector3 desiredPos = player.position + offsetFromPlayer + Vector3.up * yOffset;
+        if (ghostObject == null) return;
 
-        // Check collision
-        Collider[] hits = Physics.OverlapBox(desiredPos, ghostObject.transform.localScale / 2f, ghostObject.transform.rotation, collisionLayer);
-        if (hits.Length == 0)
-        {
-            ghostObject.transform.position = desiredPos;
-        }
+        Vector3 desiredPos = player.position + offsetFromPlayer + Vector3.up * yOffset;
+        ghostObject.transform.position = desiredPos;
     }
 
     void HandleScroll()
     {
         float scroll = Mouse.current.scroll.ReadValue().y;
-
         if (scroll != 0)
         {
             yOffset += scroll * 0.1f;
@@ -125,26 +134,25 @@ public class MoveObject : MonoBehaviour
 
     void HandleRotation()
     {
+        if (ghostObject == null) return;
+
         float baseYRotation = player.eulerAngles.y;
 
-        // Q rotates left/right (Y-axis)
-        if (Keyboard.current.qKey.wasPressedThisFrame)
-            currentY -= rotationIncrement;
-
-        // E rotates up/down (X-axis)
-        if (Keyboard.current.eKey.wasPressedThisFrame)
+        // Up/Down arrows rotate X-axis
+        if (Keyboard.current.upArrowKey.wasPressedThisFrame)
             currentX += rotationIncrement;
+        if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+            currentX -= rotationIncrement;
 
-        // T rotates 90° around player (orbit)
-        if (Keyboard.current.tKey.wasPressedThisFrame)
-        {
-            offsetFromPlayer = Quaternion.Euler(0, 90f, 0) * offsetFromPlayer;
-        }
+        // Left/Right arrows rotate Y-axis
+        if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
+            currentY -= rotationIncrement;
+        if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
+            currentY += rotationIncrement;
 
         currentX = Mathf.Repeat(currentX, 360f);
         currentY = Mathf.Repeat(currentY, 360f);
 
-        // Apply rotation in place
         ghostObject.transform.rotation = Quaternion.Euler(currentX, baseYRotation + currentY, 0f);
     }
 
@@ -157,5 +165,18 @@ public class MoveObject : MonoBehaviour
                 mats[i] = ghostMaterial;
             r.materials = mats;
         }
+    }
+
+    void SetGhostColliders(bool enableGhost)
+    {
+        if (ghostObject == null) return;
+
+        Collider[] colliders = ghostObject.GetComponentsInChildren<Collider>();
+        foreach (Collider col in colliders)
+            col.enabled = !enableGhost;
+
+        Rigidbody rb = ghostObject.GetComponent<Rigidbody>();
+        if (rb != null)
+            rb.isKinematic = enableGhost;
     }
 }

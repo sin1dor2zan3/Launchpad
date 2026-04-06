@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement; // Needed to restart scenes
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -48,5 +49,11 @@ public class PlayerMovement : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        // Restart scene
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }

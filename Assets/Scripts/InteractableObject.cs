@@ -7,7 +7,7 @@ public class InteractableObject : MonoBehaviour
     public float interactDistance = 2f;
 
     [Header("Game Progress")]
-    public static int totalObjectsPickedUp = 6;
+    public static int totalObjectsPickedUp = 0;
 
     private void Update()
     {

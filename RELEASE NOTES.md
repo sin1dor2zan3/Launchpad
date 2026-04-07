@@ -42,6 +42,7 @@
 * Player may sometimes fly using planks.
 * Some object materials don't display correctly and appear black.
 * Most models don't have a texture.
+* You can finish the game by pressing E anywhere after collecting all six items. You don't need to press E on the toy box.
 
 
 

@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
-            if(InteractableObject.totalObjectsPickedUp == 6)
+            if(InteractableObject.totalObjectsPickedUp >= 6)
             {
                 SceneManager.LoadScene("Win Screen");
             }

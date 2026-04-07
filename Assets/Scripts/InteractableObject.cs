@@ -5,16 +5,15 @@ public class InteractableObject : MonoBehaviour
 {
     [Header("Interaction Settings")]
     public float interactDistance = 2f;
-    public string playerTag = "Player";
 
     [Header("Game Progress")]
-    public static int totalObjectsPickedUp = 0;
+    public static int totalObjectsPickedUp = 6;
 
     private void Update()
     {
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
-            GameObject player = GameObject.FindGameObjectWithTag(playerTag);
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
 
             if (player != null)
             {

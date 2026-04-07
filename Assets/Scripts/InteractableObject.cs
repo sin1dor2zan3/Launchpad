@@ -4,17 +4,22 @@ using UnityEngine.InputSystem;
 public class InteractableObject : MonoBehaviour
 {
     [Header("Interaction Settings")]
-    public float interactDistance = 2f; // Max distance to interact
-    public string playerTag = "Player"; // Player tag to detect
+    public float interactDistance = 2f;
+    public string playerTag = "Player";
+
+    [Header("Game Progress")]
+    public static int totalObjectsPickedUp = 0;
 
     private void Update()
     {
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             GameObject player = GameObject.FindGameObjectWithTag(playerTag);
+
             if (player != null)
             {
                 float distance = Vector3.Distance(transform.position, player.transform.position);
+
                 if (distance <= interactDistance)
                 {
                     Interact();
@@ -25,7 +30,14 @@ public class InteractableObject : MonoBehaviour
 
     void Interact()
     {
-        Debug.Log("Interacted with: " + gameObject.name);
+        if (CompareTag("Finish"))
+        {
+            return;
+        }
+
+        Debug.Log("Picked up: " + gameObject.name);
+        totalObjectsPickedUp++;
+
         Destroy(gameObject);
     }
 }

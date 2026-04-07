@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement; // Needed to restart scenes
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -53,7 +53,21 @@ public class PlayerMovement : MonoBehaviour
         // Restart scene
         if (Keyboard.current.rKey.wasPressedThisFrame)
         {
+            InteractableObject.totalObjectsPickedUp = 0;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            Application.Quit();
+        }
+
+        if (Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            if(InteractableObject.totalObjectsPickedUp == 6)
+            {
+                SceneManager.LoadScene("Win Screen");
+            }
         }
     }
 }

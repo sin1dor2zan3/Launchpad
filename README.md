@@ -14,7 +14,7 @@ GitHub Link - https://github.com/sin1dor2zan3/Launchpad
 
 
 
-* Collect all three cylinders by using planks to climb up surfaces and solve puzzles.
+* Collect all six toys and return them to the toy box. Use planks to your advantage to reach higher areas.
 
 
 
@@ -23,17 +23,22 @@ GitHub Link - https://github.com/sin1dor2zan3/Launchpad
 
 
 WASD - Move
-
 E - Interact
+Q - Toggle Inventory
 
+
+
+
+
+ESC - Force Quit
 R - Restart Level
 
 
 
+
+
 LMB - Pick Up / Put Down
-
 RMB - Rotate Around Player
-
 Arrow Keys - Object Rotation
 
 
@@ -42,6 +47,6 @@ Arrow Keys - Object Rotation
 
 
 
-* Moving and rotating objects to solve puzzles
-* Fitting key items in your limited inventory
+* Moving and rotating objects to solve puzzles.
+* Fitting key items in your limited inventory.
 

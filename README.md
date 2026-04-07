@@ -47,6 +47,6 @@ Arrow Keys - Object Rotation
 
 
 
-* Moving and rotating objects to solve puzzles.
-* Fitting key items in your limited inventory.
+* Moving and rotating objects to solve puzzles using arrow keys and mouse buttons.
+* Fitting key items in your limited inventory (ex, resident evil, tarkov, day z, etc).
 

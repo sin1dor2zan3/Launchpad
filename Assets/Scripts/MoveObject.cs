@@ -19,12 +19,14 @@ public class MoveObject : MonoBehaviour
     private GameObject pickedPrefab;
     private bool holdingObject = false;
 
-    private float currentX = 0f; // X-axis rotation (tilt)
-    private float currentY = 0f; // Y-axis rotation (spin)
-    private float yOffset = 0f;   // Vertical offset
+    private float currentX = 0f;
+    private float currentY = 0f;
+    private float yOffset = 0f;
+
     private Vector3 offsetFromPlayer;
 
     private bool ghostMode = false;
+    private int orbitIndex = 0;
 
     void Update()
     {
@@ -34,7 +36,6 @@ public class MoveObject : MonoBehaviour
             HandleRotation();
             HandleScroll();
 
-            // Keep ghost mode active while holding
             if (!ghostMode)
             {
                 ghostMode = true;
@@ -42,22 +43,53 @@ public class MoveObject : MonoBehaviour
             }
         }
 
-        // Pick up or place object with Left Mouse Button
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            if (!holdingObject)
-                TryPickUp();
-            else
-                PlaceObject();
-        }
-
-        // Orbit around player with Right Mouse Button
-        if (holdingObject && Mouse.current.rightButton.wasPressedThisFrame)
-        {
-            offsetFromPlayer = Quaternion.Euler(0, 90f, 0) * offsetFromPlayer;
-        }
+        HandlePickupPlace();
+        HandleOrbit();
     }
 
+    // ---------------- INPUT: PICKUP / PLACE ----------------
+    void HandlePickupPlace()
+    {
+        bool pickupPressed =
+            (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) ||
+            (Gamepad.current != null && Gamepad.current.rightTrigger.wasPressedThisFrame);
+
+        if (!pickupPressed) return;
+
+        if (!holdingObject)
+            TryPickUp();
+        else
+            PlaceObject();
+    }
+
+    // ---------------- INPUT: ORBIT (FIXED) ----------------
+    void HandleOrbit()
+    {
+        if (!holdingObject) return;
+
+        bool orbitPressed =
+            (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame) ||
+            (Gamepad.current != null && Gamepad.current.leftTrigger.wasPressedThisFrame);
+
+        if (!orbitPressed) return;
+
+        // 🔥 true 4-direction orbit system
+        orbitIndex = (orbitIndex + 1) % 4;
+
+        Vector3 dir = Vector3.zero;
+
+        switch (orbitIndex)
+        {
+            case 0: dir = player.forward; break;
+            case 1: dir = player.right; break;
+            case 2: dir = -player.forward; break;
+            case 3: dir = -player.right; break;
+        }
+
+        offsetFromPlayer = dir.normalized * holdDistance;
+    }
+
+    // ---------------- PICKUP ----------------
     void TryPickUp()
     {
         GameObject[] pickables = GameObject.FindGameObjectsWithTag("Pickable");
@@ -84,9 +116,13 @@ public class MoveObject : MonoBehaviour
             currentX = 0f;
             currentY = 0f;
             yOffset = 0f;
+
             holdingObject = true;
 
+            // start forward
             offsetFromPlayer = player.forward * holdDistance;
+            orbitIndex = 0;
+
             ghostObject.transform.position = player.position + offsetFromPlayer;
 
             ghostMode = true;
@@ -94,12 +130,9 @@ public class MoveObject : MonoBehaviour
 
             Debug.Log("Picked up: " + pickedPrefab.name);
         }
-        else
-        {
-            Debug.Log("No pickable object nearby");
-        }
     }
 
+    // ---------------- PLACE ----------------
     void PlaceObject()
     {
         pickedPrefab.transform.position = ghostObject.transform.position;
@@ -107,24 +140,49 @@ public class MoveObject : MonoBehaviour
         pickedPrefab.SetActive(true);
 
         Destroy(ghostObject);
+
         ghostObject = null;
         pickedPrefab = null;
         holdingObject = false;
-
         ghostMode = false;
     }
 
+    // ---------------- MOVEMENT ----------------
     void HandleMovement()
     {
         if (ghostObject == null) return;
 
-        Vector3 desiredPos = player.position + offsetFromPlayer + Vector3.up * yOffset;
+        Vector3 desiredPos =
+            player.position +
+            offsetFromPlayer +
+            Vector3.up * yOffset;
+
         ghostObject.transform.position = desiredPos;
     }
 
+    // ---------------- HEIGHT CONTROL (FIXED RIGHT STICK) ----------------
     void HandleScroll()
     {
-        float scroll = Mouse.current.scroll.ReadValue().y;
+        float scroll = 0f;
+
+        if (Mouse.current != null)
+            scroll += Mouse.current.scroll.ReadValue().y;
+
+        if (Gamepad.current != null)
+        {
+            Vector2 stick = Gamepad.current.rightStick.ReadValue();
+
+            float stickScroll = 0f;
+
+            if (Mathf.Abs(stick.y) > 0.4f)
+            {
+                stickScroll = Mathf.Sign(stick.y) *
+                              Mathf.Pow(Mathf.Abs(stick.y), 4f);
+            }
+
+            scroll += stickScroll * 1.5f;
+        }
+
         if (scroll != 0)
         {
             yOffset += scroll * 0.1f;
@@ -132,30 +190,42 @@ public class MoveObject : MonoBehaviour
         }
     }
 
+    // ---------------- ROTATION ----------------
     void HandleRotation()
     {
         if (ghostObject == null) return;
 
         float baseYRotation = player.eulerAngles.y;
 
-        // Up/Down arrows rotate X-axis
-        if (Keyboard.current.upArrowKey.wasPressedThisFrame)
-            currentX += rotationIncrement;
-        if (Keyboard.current.downArrowKey.wasPressedThisFrame)
-            currentX -= rotationIncrement;
+        bool up =
+            Keyboard.current?.upArrowKey.wasPressedThisFrame == true ||
+            Gamepad.current?.dpad.up.wasPressedThisFrame == true;
 
-        // Left/Right arrows rotate Y-axis
-        if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
-            currentY -= rotationIncrement;
-        if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
-            currentY += rotationIncrement;
+        bool down =
+            Keyboard.current?.downArrowKey.wasPressedThisFrame == true ||
+            Gamepad.current?.dpad.down.wasPressedThisFrame == true;
+
+        bool left =
+            Keyboard.current?.leftArrowKey.wasPressedThisFrame == true ||
+            Gamepad.current?.dpad.left.wasPressedThisFrame == true;
+
+        bool right =
+            Keyboard.current?.rightArrowKey.wasPressedThisFrame == true ||
+            Gamepad.current?.dpad.right.wasPressedThisFrame == true;
+
+        if (up) currentX += rotationIncrement;
+        if (down) currentX -= rotationIncrement;
+        if (left) currentY -= rotationIncrement;
+        if (right) currentY += rotationIncrement;
 
         currentX = Mathf.Repeat(currentX, 360f);
         currentY = Mathf.Repeat(currentY, 360f);
 
-        ghostObject.transform.rotation = Quaternion.Euler(currentX, baseYRotation + currentY, 0f);
+        ghostObject.transform.rotation =
+            Quaternion.Euler(currentX, baseYRotation + currentY, 0f);
     }
 
+    // ---------------- VISUALS ----------------
     void SetGhostMaterial(GameObject obj)
     {
         foreach (Renderer r in obj.GetComponentsInChildren<Renderer>())
@@ -171,8 +241,7 @@ public class MoveObject : MonoBehaviour
     {
         if (ghostObject == null) return;
 
-        Collider[] colliders = ghostObject.GetComponentsInChildren<Collider>();
-        foreach (Collider col in colliders)
+        foreach (Collider col in ghostObject.GetComponentsInChildren<Collider>())
             col.enabled = !enableGhost;
 
         Rigidbody rb = ghostObject.GetComponent<Rigidbody>();

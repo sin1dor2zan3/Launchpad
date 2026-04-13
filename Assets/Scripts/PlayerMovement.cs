@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         // Gravity
         if (controller.isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f; // keeps player grounded
+            velocity.y = -2f;
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -62,9 +62,17 @@ public class PlayerMovement : MonoBehaviour
             Application.Quit();
         }
 
-        if (Keyboard.current.eKey.wasPressedThisFrame)
+        if (Keyboard.current.qKey.wasPressedThisFrame)
         {
-            if(InteractableObject.totalObjectsPickedUp >= 6)
+            InventoryManager.Instance.DropItem(transform);
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Finish"))
+        {
+            if (InteractableObject.totalObjectsPickedUp >= 6)
             {
                 SceneManager.LoadScene("Win Screen");
             }

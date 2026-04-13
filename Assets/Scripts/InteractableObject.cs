@@ -6,6 +6,10 @@ public class InteractableObject : MonoBehaviour
     [Header("Interaction Settings")]
     public float interactDistance = 2f;
 
+    [Header("Inventory Shape")]
+    public int width = 1;
+    public int height = 1;
+
     [Header("Game Progress")]
     public static int totalObjectsPickedUp = 0;
 
@@ -30,13 +34,12 @@ public class InteractableObject : MonoBehaviour
     void Interact()
     {
         if (CompareTag("Finish"))
-        {
             return;
-        }
 
         Debug.Log("Picked up: " + gameObject.name);
-        totalObjectsPickedUp++;
 
-        Destroy(gameObject);
+        InventoryManager.Instance.OpenInventory(gameObject);
+
+        totalObjectsPickedUp++;
     }
 }

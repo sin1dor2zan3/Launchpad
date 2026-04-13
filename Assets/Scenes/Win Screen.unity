@@ -432,8 +432,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 357046154}
-        m_TargetAssemblyTypeName: WinScreen, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_TargetAssemblyTypeName: WinLoseScreen, Assembly-CSharp
+        m_MethodName: QuitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1149,7 +1149,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 357046154}
         m_TargetAssemblyTypeName: WinScreen, Assembly-CSharp
-        m_MethodName: ReplayButton
+        m_MethodName: PlayAgainButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

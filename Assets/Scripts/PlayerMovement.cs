@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (hit.gameObject.CompareTag("Finish"))
         {
-            if (InteractableObject.totalObjectsPickedUp >= 6)
+            if (InteractableObject.totalObjectsPickedUp >= 9)
             {
                 SceneManager.LoadScene("Win Screen");
             }

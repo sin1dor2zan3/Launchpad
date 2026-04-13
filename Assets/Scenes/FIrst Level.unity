@@ -666,8 +666,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &110879363
@@ -1939,8 +1940,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &324206429
@@ -2032,8 +2034,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &334485611
@@ -2125,8 +2128,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &405098187
@@ -3459,8 +3463,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1001 &674988563
@@ -4146,8 +4151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &769375272 stripped
@@ -4312,8 +4318,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &773519085
@@ -4405,8 +4412,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &851723879 stripped
@@ -4648,8 +4656,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &952547943
@@ -4853,8 +4862,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1019445798
@@ -4946,8 +4956,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1022220213
@@ -5338,8 +5349,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1084312669
@@ -5431,8 +5443,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1086950762
@@ -6045,8 +6058,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1169886648
@@ -6138,8 +6152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1200912239
@@ -6231,8 +6246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1222994680 stripped
@@ -6467,8 +6483,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1285785042
@@ -6560,8 +6577,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1001 &1287554106
@@ -7240,8 +7258,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1337124247
@@ -7333,8 +7352,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1345049951
@@ -7975,8 +7995,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1001 &1495524396
@@ -8128,8 +8149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1524590401
@@ -8221,8 +8243,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1573853511
@@ -8314,8 +8337,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1617697076
@@ -8407,8 +8431,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1627096278
@@ -8500,8 +8525,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1001 &1627919581
@@ -8787,8 +8813,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1001 &1695166983
@@ -8813,7 +8840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dbbc9f276c1f5e54f8b50d1b029f8c97, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.409
+      value: 1.179
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dbbc9f276c1f5e54f8b50d1b029f8c97, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8821,7 +8848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dbbc9f276c1f5e54f8b50d1b029f8c97, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.416
+      value: 1.145
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dbbc9f276c1f5e54f8b50d1b029f8c97, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8967,8 +8994,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &1747231583
@@ -9616,8 +9644,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1001 &1963335449
@@ -10528,8 +10557,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &2108890781 stripped
@@ -10715,8 +10745,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1 &2109567594
@@ -10808,8 +10839,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   occupiedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  highlightValid: {r: 0, g: 1, b: 0, a: 1}
+  highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
@@ -14,6 +13,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private Vector3 velocity;
 
+    private bool resetPressed;
+    private bool pausePressed;
+    private bool dropPressed;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -21,49 +24,42 @@ public class PlayerMovement : MonoBehaviour
 
         controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         controls.Player.Move.canceled += ctx => moveInput = Vector2.zero;
+
+        controls.Player.Reset.performed += ctx => resetPressed = true;
+        controls.Player.Pause.performed += ctx => pausePressed = true;
+        controls.Player.Toggle.performed += ctx => dropPressed = true;
     }
 
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
+    private void OnEnable() => controls.Enable();
+    private void OnDisable() => controls.Disable();
 
     private void Update()
     {
-        // WASD movement
-        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
-        move = move.normalized;
-
+        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y).normalized;
         controller.Move(move * moveSpeed * Time.deltaTime);
 
-        // Gravity
         if (controller.isGrounded && velocity.y < 0)
-        {
             velocity.y = -2f;
-        }
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        // Restart scene
-        if (Keyboard.current.rKey.wasPressedThisFrame)
+        if (resetPressed)
         {
+            resetPressed = false;
             InteractableObject.totalObjectsPickedUp = 0;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (pausePressed)
         {
+            pausePressed = false;
             Application.Quit();
         }
 
-        if (Keyboard.current.qKey.wasPressedThisFrame)
+        if (dropPressed)
         {
+            dropPressed = false;
             InventoryManager.Instance.DropItem(transform);
         }
     }

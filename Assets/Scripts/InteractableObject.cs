@@ -10,36 +10,55 @@ public class InteractableObject : MonoBehaviour
     public int width = 1;
     public int height = 1;
 
-    [Header("Game Progress")]
     public static int totalObjectsPickedUp = 0;
 
-    private void Update()
+    private Transform player;
+
+    private void Start()
     {
-        if (Keyboard.current.eKey.wasPressedThisFrame)
+        GameObject p = GameObject.FindGameObjectWithTag("Player");
+
+        if (p != null)
+            player = p.transform;
+        else
+            Debug.LogError("PLAYER TAG NOT FOUND!");
+    }
+
+    void Update()
+    {
+        if (player == null) return;
+
+        bool interactPressed =
+            (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame) ||
+            (Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame);
+
+        if (!interactPressed) return;
+
+        float distance = Vector3.Distance(transform.position, player.position);
+
+        Debug.Log($"Interact attempt | Distance: {distance}");
+
+        if (distance <= interactDistance)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-            if (player != null)
-            {
-                float distance = Vector3.Distance(transform.position, player.transform.position);
-
-                if (distance <= interactDistance)
-                {
-                    Interact();
-                }
-            }
+            Interact();
+        }
+        else
+        {
+            Debug.Log("Too far to interact");
         }
     }
 
     void Interact()
     {
         if (CompareTag("Finish"))
+        {
+            Debug.Log("Finish object blocked interaction");
             return;
-
-        Debug.Log("Picked up: " + gameObject.name);
+        }
 
         InventoryManager.Instance.OpenInventory(gameObject);
-
         totalObjectsPickedUp++;
+
+        Debug.Log("Interacted with: " + name);
     }
 }

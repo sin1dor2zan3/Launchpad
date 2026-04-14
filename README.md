@@ -22,6 +22,10 @@ GitHub Link - https://github.com/sin1dor2zan3/Launchpad
 
 
 
+**PLAYER:**
+
+
+
 WASD / LStick - Move
 
 
@@ -30,27 +34,47 @@ E / A - Interact
 
 
 
-Q / B - Toggle Inventory
+TAB / X - Toggle Inventory
 
 
 
-ESC / Start - Force Quit
+ESC / START - Pause
 
 
 
-R / Y - Restart Level
+**OBJECT MOVEMENT:**
 
 
 
-LMB / RTrigger - Pick Up / Put Down
+SPACE / RTrigger - Pick Up / Put Down Object
 
 
 
-RMB / LTrigger - Orbit Object
+Q / LTrigger - Orbit Object
 
 
 
-Arrows / D-Pad - Rotate Object
+Arrow Keys / D-Pad - Rotate Object
+
+
+
+**INVENTORY:**
+
+
+
+WASD / LStick - Change Slot
+
+
+
+Left/Right Arrow Keys / Left/Right D-Pad - Rotate Item
+
+
+
+Up Arrow / Up D-Pad - Place Item
+
+
+
+Down Arrow / Down D-Pad - Drop Item
 
 
 

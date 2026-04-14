@@ -13,8 +13,6 @@
 
 
 * Ability to have a better idea of where you're placing planks (ex: outline, shadow, etc).
-* Pause Menu
-* Options Menu
 * Audio
 * Player Model / Animation
 
@@ -27,6 +25,7 @@
 
 
 * Player
+* Planks
 
 
 
@@ -47,4 +46,5 @@
 
 * Movable objects can be used to hide items.
 * Player can reach decently far to grab items.
+* Certain objects can interact when colliding.
 

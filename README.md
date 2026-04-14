@@ -14,7 +14,7 @@ GitHub Link - https://github.com/sin1dor2zan3/Launchpad
 
 
 
-* Collect all six toys and return them to the toy box. Use planks to your advantage to reach higher areas.
+* Collect all nine toys and return them to the toy box. Use planks to your advantage to reach higher areas.
 
 
 
@@ -22,24 +22,35 @@ GitHub Link - https://github.com/sin1dor2zan3/Launchpad
 
 
 
-WASD - Move
-E - Interact
-Q - Toggle Inventory
+WASD / LStick - Move
 
 
 
-
-
-ESC - Force Quit
-R - Restart Level
+E / A - Interact
 
 
 
+Q / B - Toggle Inventory
 
 
-LMB - Pick Up / Put Down
-RMB - Rotate Around Player
-Arrow Keys - Object Rotation
+
+ESC / Start - Force Quit
+
+
+
+R / Y - Restart Level
+
+
+
+LMB / RTrigger - Pick Up / Put Down
+
+
+
+RMB / LTrigger - Orbit Object
+
+
+
+Arrows / D-Pad - Rotate Object
 
 
 
@@ -48,5 +59,5 @@ Arrow Keys - Object Rotation
 
 
 * Moving and rotating objects to solve puzzles using arrow keys and mouse buttons.
-* Fitting key items in your limited inventory (ex, resident evil, tarkov, day z, etc).
+* Fitting key items in your limited inventory.
 

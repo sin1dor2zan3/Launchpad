@@ -113,6 +113,7 @@ public class PauseMenu : MonoBehaviour
             levelMusic.Stop();
         }
 
+        InteractableObject.totalObjectsPickedUp = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

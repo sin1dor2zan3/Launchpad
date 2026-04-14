@@ -12,9 +12,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 moveInput;
     private Vector3 velocity;
-
-    private bool resetPressed;
-    private bool pausePressed;
     private bool dropPressed;
 
     private void Awake()
@@ -25,8 +22,6 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         controls.Player.Move.canceled += ctx => moveInput = Vector2.zero;
 
-        controls.Player.Reset.performed += ctx => resetPressed = true;
-        controls.Player.Pause.performed += ctx => pausePressed = true;
         controls.Player.Toggle.performed += ctx => dropPressed = true;
     }
 
@@ -43,19 +38,6 @@ public class PlayerMovement : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-
-        if (resetPressed)
-        {
-            resetPressed = false;
-            InteractableObject.totalObjectsPickedUp = 0;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        if (pausePressed)
-        {
-            pausePressed = false;
-            Application.Quit();
-        }
 
         if (dropPressed)
         {

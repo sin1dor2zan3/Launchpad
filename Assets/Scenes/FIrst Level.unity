@@ -7215,16 +7215,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'WASD - Move E - Interact Q - Toggle Inventory
-
-
-
-    ESC - Force Quit
-    R - Restart Level
-
-
-
-    LMB - Pick Up / Put Down RMB - Rotate Around Pla'
+  m_text: "PLAYER:\n\n\tWASD / LStick - Move\n\n\tE / A - Interact\n\n\tTAB / X -
+    Toggle Inventory\n\n\tESC / START - Pause\n\nOBJECT MOVEMENT:\n\n\tSPACE / RTrigger
+    - Pick Up / Put Down Object\n\n\tQ / LTrigger - Orbit Object\n\n\tArrow Keys
+    / D-Pad - Rotate Object\n\nINVENTORY:\n\n\tWASD / LStick - Change Slot\n\n\tLeft/Right
+    Arrow Keys / Left/Right D-Pad - Rotate Item\n\n\tUp Arrow / Up D-Pad - Place
+    Item\n\n\tDown Arrow / Down D-Pad - Drop Item"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7251,8 +7247,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

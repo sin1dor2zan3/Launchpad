@@ -73,7 +73,6 @@ public class MoveObject : MonoBehaviour
 
         if (!orbitPressed) return;
 
-        // 🔥 true 4-direction orbit system
         orbitIndex = (orbitIndex + 1) % 4;
 
         Vector3 dir = Vector3.zero;

@@ -13,8 +13,8 @@
 
 
 * Ability to have a better idea of where you're placing planks (ex: outline, shadow, etc).
-* Audio
 * Player Model / Animation
+* Puzzles aren't fully fleshed out.
 
 
 

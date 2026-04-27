@@ -66,15 +66,15 @@ WASD / LStick - Change Slot
 
 
 
-Left/Right Arrow Keys / Left/Right D-Pad - Rotate Item
+Q / Y - Rotate Item
 
 
 
-Up Arrow / Up D-Pad - Place Item
+SPACE / RTrigger - Place Item
 
 
 
-Down Arrow / Down D-Pad - Drop Item
+R / B - Drop Item
 
 
 

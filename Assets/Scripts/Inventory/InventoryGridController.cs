@@ -71,12 +71,15 @@ public class InventoryGridController : MonoBehaviour
         currentX += dx;
         currentY -= dy;
 
-        int rows = slots.Length / columns;
+        int rows = Mathf.CeilToInt((float)slots.Length / columns);
 
         currentX = Mathf.Clamp(currentX, 0, columns - 1);
         currentY = Mathf.Clamp(currentY, 0, rows - 1);
 
         currentIndex = currentY * columns + currentX;
+
+        if (currentIndex >= slots.Length)
+            currentIndex = slots.Length - 1;
     }
 
     void HandleRotation()
@@ -84,15 +87,10 @@ public class InventoryGridController : MonoBehaviour
         GameObject held = InventoryManager.Instance.GetHeldItem();
         if (held == null) return;
 
-        bool rotate =
-            Keyboard.current.leftArrowKey.wasPressedThisFrame ||
-            Keyboard.current.rightArrowKey.wasPressedThisFrame;
+        bool rotate = Keyboard.current.qKey.wasPressedThisFrame;
 
         if (Gamepad.current != null)
-        {
-            rotate |= Gamepad.current.dpad.left.wasPressedThisFrame ||
-                      Gamepad.current.dpad.right.wasPressedThisFrame;
-        }
+            rotate |= Gamepad.current.yButton.wasPressedThisFrame;
 
         if (!rotate) return;
 
@@ -105,9 +103,8 @@ public class InventoryGridController : MonoBehaviour
 
     void HandlePlacement()
     {
-        bool place =
-            Keyboard.current.upArrowKey.wasPressedThisFrame ||
-            (Gamepad.current != null && Gamepad.current.dpad.up.wasPressedThisFrame);
+        bool place = Keyboard.current.spaceKey.wasPressedThisFrame ||
+                     (Gamepad.current != null && Gamepad.current.rightTrigger.wasPressedThisFrame);
 
         if (!place) return;
 
@@ -123,31 +120,25 @@ public class InventoryGridController : MonoBehaviour
         }
 
         PlaceItem(currentIndex, item);
-
         InventoryManager.Instance.ClearHeldItem();
-
-        // 🔥 REQUIRED: close inventory after placing
         InventoryManager.Instance.ToggleInventory();
     }
 
     void HandleDrop()
     {
-        bool drop =
-            Keyboard.current.downArrowKey.wasPressedThisFrame ||
-            (Gamepad.current != null && Gamepad.current.dpad.down.wasPressedThisFrame);
+        bool drop = Keyboard.current.rKey.wasPressedThisFrame ||
+                    (Gamepad.current != null && Gamepad.current.bButton.wasPressedThisFrame);
 
         if (!drop) return;
 
         Transform player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        // 🧠 CASE 1: dropping held item
         if (InventoryManager.Instance.HasHeldItem())
         {
             InventoryManager.Instance.DropHeldItem(player);
             return;
         }
 
-        // 🧠 CASE 2: removing grid item
         InventorySlot slot = slots[currentIndex];
 
         if (!slot.isOccupied || slot.occupyingItem == null)
@@ -166,18 +157,13 @@ public class InventoryGridController : MonoBehaviour
         for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i].occupyingItem == item)
-            {
                 slots[i].ClearSlot();
-            }
         }
     }
 
     void UpdatePreview()
     {
         ClearAllHighlights();
-
-        int startX = currentIndex % columns;
-        int startY = currentIndex / columns;
 
         GameObject held = InventoryManager.Instance.GetHeldItem();
 
@@ -192,11 +178,20 @@ public class InventoryGridController : MonoBehaviour
         bool canPlace = CanPlaceItem(currentIndex, item);
         Color color = canPlace ? slots[0].highlightValid : slots[0].highlightInvalid;
 
+        int startX = currentIndex % columns;
+        int startY = currentIndex / columns;
+
         for (int y = 0; y < item.height; y++)
         {
             for (int x = 0; x < item.width; x++)
             {
-                int index = (startY + y) * columns + (startX + x);
+                int gridX = startX + x;
+                int gridY = startY + y;
+
+                if (gridX >= columns)
+                    continue;
+
+                int index = gridY * columns + gridX;
 
                 if (index < slots.Length)
                     slots[index].SetHighlight(color);

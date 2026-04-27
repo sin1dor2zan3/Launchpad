@@ -8,31 +8,35 @@ public class MoveObject : MonoBehaviour
     public float grabDistance = 3f;
     public float holdDistance = 2f;
 
+    [Header("Height Settings")]
+    public float headOffset = 0.2f;
+
+    [Header("Safety Offset")]
+    public float forwardSafetyOffset = 0.5f;
+
     [Header("Drag Settings")]
     public Material ghostMaterial;
 
     [Header("Rotation Settings")]
     public float rotationIncrement = 15f;
+    public float orbitIncrement = 90f;
 
     private GameObject ghostObject;
     private GameObject pickedPrefab;
 
-    private Transform pivotTransform;
     private bool holdingObject = false;
 
     private float currentX = 0f;
     private float currentY = 0f;
-    private float yOffset = 0f;
 
-    private Vector3 offsetFromPlayer;
-
+    private float orbitAngle = 0f;
     private bool ghostMode = false;
-    private int orbitIndex = 0;
 
     void Update()
     {
         if (holdingObject)
         {
+            HandleOrbit();
             HandleMovement();
             HandleRotation();
 
@@ -44,14 +48,13 @@ public class MoveObject : MonoBehaviour
         }
 
         HandlePickupPlace();
-        HandleOrbit();
     }
 
-    // ---------------- INPUT: PICKUP / PLACE ----------------
+    // ---------------- INPUT ----------------
     void HandlePickupPlace()
     {
         bool pickupPressed =
-            (Mouse.current != null && Keyboard.current.spaceKey.wasPressedThisFrame) ||
+            Keyboard.current.spaceKey.wasPressedThisFrame ||
             (Gamepad.current != null && Gamepad.current.rightTrigger.wasPressedThisFrame);
 
         if (!pickupPressed) return;
@@ -62,36 +65,31 @@ public class MoveObject : MonoBehaviour
             PlaceObject();
     }
 
-    // ---------------- INPUT: ORBIT (FIXED) ----------------
+    // ---------------- ORBIT ----------------
     void HandleOrbit()
     {
-        if (!holdingObject) return;
+        bool orbitLeft =
+            Keyboard.current.qKey.wasPressedThisFrame ||
+            (Gamepad.current != null && Gamepad.current.leftShoulder.wasPressedThisFrame);
 
-        bool orbitPressed =
-            (Mouse.current != null && Keyboard.current.qKey.wasPressedThisFrame) ||
-            (Gamepad.current != null && Gamepad.current.leftTrigger.wasPressedThisFrame);
+        bool orbitRight =
+            Keyboard.current.eKey.wasPressedThisFrame ||
+            (Gamepad.current != null && Gamepad.current.rightShoulder.wasPressedThisFrame);
 
-        if (!orbitPressed) return;
+        if (orbitLeft)
+            orbitAngle -= orbitIncrement;
 
-        orbitIndex = (orbitIndex + 1) % 4;
+        if (orbitRight)
+            orbitAngle += orbitIncrement;
 
-        Vector3 dir = Vector3.zero;
-
-        switch (orbitIndex)
-        {
-            case 0: dir = player.forward; break;
-            case 1: dir = player.right; break;
-            case 2: dir = -player.forward; break;
-            case 3: dir = -player.right; break;
-        }
-
-        offsetFromPlayer = dir.normalized * holdDistance;
+        orbitAngle = Mathf.Repeat(orbitAngle, 360f);
     }
 
     // ---------------- PICKUP ----------------
     void TryPickUp()
     {
         GameObject[] pickables = GameObject.FindGameObjectsWithTag("Pickable");
+
         GameObject closest = null;
         float closestDist = grabDistance;
 
@@ -105,31 +103,25 @@ public class MoveObject : MonoBehaviour
             }
         }
 
-        if (closest != null)
-        {
-            pickedPrefab = closest;
+        if (closest == null) return;
 
-            pivotTransform = pickedPrefab.transform.Find("Pivot");
+        pickedPrefab = closest;
 
-            ghostObject = Instantiate(pickedPrefab);
-            SetGhostMaterial(ghostObject);
-            pickedPrefab.SetActive(false);
+        ghostObject = Instantiate(pickedPrefab);
+        SetGhostMaterial(ghostObject);
 
-            currentX = 0f;
-            currentY = 0f;
-            yOffset = 0f;
+        pickedPrefab.SetActive(false);
 
-            holdingObject = true;
+        currentX = 0f;
+        currentY = 0f;
+        orbitAngle = 0f;
 
-            // start forward
-            offsetFromPlayer = player.forward * holdDistance;
-            orbitIndex = 0;
+        holdingObject = true;
+        ghostMode = true;
 
-            ghostMode = true;
-            SetGhostColliders(true);
+        SetGhostColliders(true);
 
-            Debug.Log("Picked up: " + pickedPrefab.name);
-        }
+        Debug.Log("Picked up: " + pickedPrefab.name);
     }
 
     // ---------------- PLACE ----------------
@@ -152,26 +144,21 @@ public class MoveObject : MonoBehaviour
     {
         if (ghostObject == null) return;
 
-        Vector3 desiredPos =
-            player.position +
-            offsetFromPlayer +
-            Vector3.up * yOffset;
+        float topY = GetPlayerTopY() + headOffset;
 
-        if (pivotTransform != null)
-        {
-            // Find pivot on the ghost (IMPORTANT)
-            Transform ghostPivot = ghostObject.transform.Find("Pivot");
+        Vector3 safeForward = player.forward * forwardSafetyOffset;
 
-            if (ghostPivot != null)
-            {
-                // Offset so pivot sits at desired position
-                Vector3 offset = ghostObject.transform.position - ghostPivot.position;
-                ghostObject.transform.position = desiredPos + offset;
-                return;
-            }
-        }
+        Quaternion orbitRotation =
+            Quaternion.Euler(0f, player.eulerAngles.y + orbitAngle, 0f);
 
-        // Fallback: center-based
+        Vector3 orbitOffset = orbitRotation * Vector3.forward * holdDistance;
+
+        Vector3 desiredPos = new Vector3(
+            player.position.x + orbitOffset.x + safeForward.x,
+            topY,
+            player.position.z + orbitOffset.z + safeForward.z
+        );
+
         ghostObject.transform.position = desiredPos;
     }
 
@@ -180,34 +167,47 @@ public class MoveObject : MonoBehaviour
     {
         if (ghostObject == null) return;
 
-        float baseYRotation = player.eulerAngles.y;
-
         bool up =
             Keyboard.current?.upArrowKey.wasPressedThisFrame == true ||
-            Gamepad.current?.dpad.up.wasPressedThisFrame == true;
+            (Gamepad.current != null && Gamepad.current.dpad.up.wasPressedThisFrame);
 
         bool down =
             Keyboard.current?.downArrowKey.wasPressedThisFrame == true ||
-            Gamepad.current?.dpad.down.wasPressedThisFrame == true;
+            (Gamepad.current != null && Gamepad.current.dpad.down.wasPressedThisFrame);
 
         bool left =
             Keyboard.current?.leftArrowKey.wasPressedThisFrame == true ||
-            Gamepad.current?.dpad.left.wasPressedThisFrame == true;
+            (Gamepad.current != null && Gamepad.current.dpad.left.wasPressedThisFrame);
 
         bool right =
             Keyboard.current?.rightArrowKey.wasPressedThisFrame == true ||
-            Gamepad.current?.dpad.right.wasPressedThisFrame == true;
+            (Gamepad.current != null && Gamepad.current.dpad.right.wasPressedThisFrame);
 
         if (up) currentX += rotationIncrement;
         if (down) currentX -= rotationIncrement;
         if (left) currentY -= rotationIncrement;
         if (right) currentY += rotationIncrement;
 
-        currentX = Mathf.Repeat(currentX, 360f);
-        currentY = Mathf.Repeat(currentY, 360f);
+        currentX = Mathf.Clamp(currentX, 0f, 180f);
+
+        float finalY = player.eulerAngles.y + orbitAngle + currentY;
 
         ghostObject.transform.rotation =
-            Quaternion.Euler(currentX, baseYRotation + currentY, 0f);
+            Quaternion.Euler(currentX, finalY, 0f);
+    }
+
+    // ---------------- PLAYER HEIGHT ----------------
+    float GetPlayerTopY()
+    {
+        Collider col = player.GetComponentInChildren<Collider>();
+        if (col != null)
+            return col.bounds.max.y;
+
+        Renderer rend = player.GetComponentInChildren<Renderer>();
+        if (rend != null)
+            return rend.bounds.max.y;
+
+        return player.position.y + 1.8f;
     }
 
     // ---------------- VISUALS ----------------
@@ -218,10 +218,12 @@ public class MoveObject : MonoBehaviour
             Material[] mats = new Material[r.materials.Length];
             for (int i = 0; i < mats.Length; i++)
                 mats[i] = ghostMaterial;
+
             r.materials = mats;
         }
     }
 
+    // ---------------- PHYSICS FIX ----------------
     void SetGhostColliders(bool enableGhost)
     {
         if (ghostObject == null) return;
@@ -231,6 +233,11 @@ public class MoveObject : MonoBehaviour
 
         Rigidbody rb = ghostObject.GetComponent<Rigidbody>();
         if (rb != null)
+        {
             rb.isKinematic = enableGhost;
+            rb.useGravity = false;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
     }
 }

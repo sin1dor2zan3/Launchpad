@@ -17025,6 +17025,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1758669521}
     m_Modifications:
+    - target: {fileID: 7462292846086097691, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
+      propertyPath: headOffset
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462292846086097691, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
+      propertyPath: grabDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462292846086097691, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
+      propertyPath: holdDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7637776119275796793, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
       propertyPath: m_Height
       value: 0.2390953
@@ -17036,6 +17048,10 @@ PrefabInstance:
     - target: {fileID: 7637776119275796793, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
       propertyPath: m_Center.y
       value: 0.1095702
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637776119275796793, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8194842043796183774, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
       propertyPath: m_LocalPosition.x

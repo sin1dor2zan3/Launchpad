@@ -2,7 +2,7 @@
 
 ## Bad Ideas Studios
 
-#### Launchpad Project Release Notes v0.2
+#### Launchpad Project Release Notes v0.4a
 
 
 
@@ -13,7 +13,7 @@
 
 
 * Ability to have a better idea of where you're placing planks (ex: outline, shadow, etc).
-* Player Model / Animation
+* Player Animation
 * Puzzles aren't fully fleshed out.
 
 
@@ -24,7 +24,7 @@
 
 
 
-* Player
+* Soccer Ball
 * Planks
 
 
@@ -33,8 +33,7 @@
 
 
 
-* Some object materials don't display correctly and appear black.
-* Most models don't have a texture.
+* Might be difficult to pick up some items.
 
 
 

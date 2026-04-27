@@ -2,7 +2,7 @@
 
 ## Bad Ideas Studios
 
-#### Launchpad Project ReadMe
+#### Launchpad Project ReadMe v0.4a
 
 
 
@@ -82,6 +82,6 @@ R / B - Drop Item
 
 
 
-* Moving and rotating objects to solve puzzles using arrow keys and mouse buttons.
+* Moving and rotating objects to solve puzzles using arrow keys.
 * Fitting key items in your limited inventory.
 

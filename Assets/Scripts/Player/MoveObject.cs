@@ -5,8 +5,8 @@ public class MoveObject : MonoBehaviour
 {
     [Header("Player Settings")]
     public Transform player;
-    public float grabDistance = 3f;
-    public float holdDistance = 2f;
+    public float grabDistance = 2f;
+    public float holdDistance = 1f;
 
     [Header("Height Settings")]
     public float headOffset = 0.2f;

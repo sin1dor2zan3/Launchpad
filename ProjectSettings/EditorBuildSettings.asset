@@ -7,13 +7,25 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
-    guid: ca058ee69751ae1469b8d930e024f9a1
+    guid: f5591fba3fa18534ab5943eb57742374
+  - enabled: 1
+    path: Assets/Scenes/Hub.unity
+    guid: 9ed504a947652da44858be2f4013c7ff
   - enabled: 1
     path: Assets/Scenes/First Level.unity
     guid: f68a11e63422bf342a77e1cb6a8e93ec
   - enabled: 1
+    path: Assets/Scenes/Second Level.unity
+    guid: 10d41f21780abd243a336b051ee6a7f4
+  - enabled: 1
+    path: Assets/Scenes/Third Level.unity
+    guid: 8c8f0674241f4d848819459e7d78fd36
+  - enabled: 1
+    path: Assets/Scenes/Fourth Level.unity
+    guid: e88c90633c91f4ff2b91de1103487f67
+  - enabled: 1
     path: Assets/Scenes/Win Screen.unity
-    guid: a214edb66958658409d985a20103f669
+    guid: 56421d9eb5fe9554e8cd6f074ec32bfb
   - enabled: 1
     path: Assets/Scenes/Lose Screen.unity
     guid: b54594290f662614387181e78d43e570

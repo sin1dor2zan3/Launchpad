@@ -7,13 +7,16 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float gravity = -9.8f;
 
+    public int itemsNeededToFinish = 10;
+    public int levelCount = 0;
+
     private CharacterController controller;
     private PlayerControls controls;
 
     private Vector2 moveInput;
     private Vector3 velocity;
 
-    private bool hasWon = false; // prevents multiple scene loads
+    private bool isTransitioning = false;
 
     private void Awake()
     {
@@ -41,19 +44,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (hasWon) return;
+        if (isTransitioning) return;
 
-        if (other.CompareTag("Finish"))
+        if (!other.CompareTag("Finish")) return;
+
+        if (InteractableObject.totalObjectsPickedUp >= itemsNeededToFinish)
         {
-            if (InteractableObject.totalObjectsPickedUp >= 10)
+            isTransitioning = true;
+
+            string currentScene = SceneManager.GetActiveScene().name;
+
+            // Always return to hub after finishing a level
+            if (currentScene != "Hub")
             {
-                hasWon = true;
-                SceneManager.LoadScene("Win Screen");
+                SceneManager.LoadScene("Hub");
+                levelCount++;
             }
-            else
-            {
-                Debug.Log("Need more items before winning!");
-            }
+        }
+        else
+        {
+            Debug.Log("Need more items before finishing level!");
         }
     }
 }

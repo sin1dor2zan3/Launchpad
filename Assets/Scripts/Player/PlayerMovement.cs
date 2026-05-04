@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
+    public Animator animator;
+
     public float moveSpeed = 5f;
     public float gravity = -9.8f;
 
@@ -40,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        float horizontalSpeed = new Vector3(controller.velocity.x, 0, controller.velocity.z).magnitude;
+        animator.SetFloat("Speed", horizontalSpeed);
     }
 
     private void OnTriggerEnter(Collider other)

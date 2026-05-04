@@ -8,6 +8,11 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadSceneAsync(1);
+        PlayerMovement.levelCount = 0;
+        for (int i = 0; i < PlayerMovement.levelCompleted.Length; i++)        
+        {
+            PlayerMovement.levelCompleted[i] = false;
+        }
     }
 
     public void QuitGame()

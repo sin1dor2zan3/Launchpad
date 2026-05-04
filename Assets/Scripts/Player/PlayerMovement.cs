@@ -10,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.8f;
 
     public int itemsNeededToFinish = 10;
-    public int levelCount = 0;
+    public static int levelCount = 0;
+    public static bool[] levelCompleted = new bool[4];
 
     private CharacterController controller;
     private PlayerControls controls;
@@ -35,8 +36,22 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+
+        // MOVE
         controller.Move(move * moveSpeed * Time.deltaTime);
 
+        // ROTATE (smoothly face movement direction)
+        if (move.magnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(move);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                10f * Time.deltaTime
+            );
+        }
+
+        // GRAVITY
         if (controller.isGrounded && velocity.y < 0)
             velocity.y = -2f;
 
@@ -59,11 +74,11 @@ public class PlayerMovement : MonoBehaviour
 
             string currentScene = SceneManager.GetActiveScene().name;
 
-            // Always return to hub after finishing a level
             if (currentScene != "Hub")
             {
                 SceneManager.LoadScene("Hub");
                 levelCount++;
+                levelCompleted[levelCount - 1] = true;
             }
         }
         else

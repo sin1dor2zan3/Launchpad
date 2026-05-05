@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Animator))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public static bool[] levelCompleted = new bool[4];
 
     private CharacterController controller;
+    private Animator animator;
     private PlayerControls controls;
 
     private Vector2 moveInput;
@@ -27,17 +29,31 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
         controls = new PlayerControls();
 
         controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         controls.Player.Move.canceled += ctx => moveInput = Vector2.zero;
     }
 
-    private void OnEnable() => controls.Enable();
-    private void OnDisable() => controls.Disable();
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
 
     private void Update()
     {
+        if (cameraTransform == null)
+        {
+            Debug.LogWarning("Camera Transform is not assigned on PlayerMovement.");
+            return;
+        }
+
         // CAMERA-RELATIVE MOVEMENT
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
@@ -52,10 +68,14 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * moveSpeed * Time.deltaTime);
 
+        // SEND MOVEMENT SPEED TO ANIMATOR
+        animator.SetFloat("Speed", move.magnitude);
+
         // ROTATE PLAYER TOWARD MOVEMENT
         if (move.magnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(move);
+
             transform.rotation = Quaternion.Slerp(
                 transform.rotation,
                 targetRotation,
@@ -65,7 +85,9 @@ public class PlayerMovement : MonoBehaviour
 
         // GRAVITY
         if (controller.isGrounded && velocity.y < 0)
+        {
             velocity.y = -2f;
+        }
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
@@ -85,9 +107,9 @@ public class PlayerMovement : MonoBehaviour
 
             if (currentScene != "Hub")
             {
-                SceneManager.LoadScene("Hub");
                 levelCount++;
                 levelCompleted[levelCount - 1] = true;
+                SceneManager.LoadScene("Hub");
             }
         }
         else

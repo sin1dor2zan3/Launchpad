@@ -50,6 +50,10 @@ SPACE / RTrigger - Pick Up / Put Down Object
 
 
 
+Q / LTrigger - Orbit Object
+
+
+
 Arrow Keys / D-Pad - Rotate Object
 
 

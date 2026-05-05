@@ -19,6 +19,7 @@ public class MoveObject : MonoBehaviour
 
     [Header("Rotation Settings")]
     public float rotationIncrement = 15f;
+    public float orbitIncrement = 90f;
 
     private GameObject ghostObject;
     private GameObject pickedPrefab;
@@ -28,12 +29,14 @@ public class MoveObject : MonoBehaviour
     private float currentX = 0f;
     private float currentY = 0f;
 
+    private float orbitAngle = 0f;
     private bool ghostMode = false;
 
     void Update()
     {
         if (holdingObject)
         {
+            HandleOrbit();
             HandleMovement();
             HandleRotation();
 
@@ -60,6 +63,26 @@ public class MoveObject : MonoBehaviour
             TryPickUp();
         else
             PlaceObject();
+    }
+
+    // ---------------- ORBIT ----------------
+    void HandleOrbit()
+    {
+        bool orbitLeft =
+            Keyboard.current.qKey.wasPressedThisFrame ||
+            (Gamepad.current != null && Gamepad.current.leftShoulder.wasPressedThisFrame);
+
+        bool orbitRight =
+            Keyboard.current.eKey.wasPressedThisFrame ||
+            (Gamepad.current != null && Gamepad.current.rightShoulder.wasPressedThisFrame);
+
+        if (orbitLeft)
+            orbitAngle -= orbitIncrement;
+
+        if (orbitRight)
+            orbitAngle += orbitIncrement;
+
+        orbitAngle = Mathf.Repeat(orbitAngle, 360f);
     }
 
     // ---------------- PICKUP ----------------
@@ -91,6 +114,7 @@ public class MoveObject : MonoBehaviour
 
         currentX = 0f;
         currentY = 0f;
+        orbitAngle = 0f;
 
         holdingObject = true;
         ghostMode = true;
@@ -124,12 +148,15 @@ public class MoveObject : MonoBehaviour
 
         Vector3 safeForward = player.forward * forwardSafetyOffset;
 
-        Vector3 holdOffset = player.forward * holdDistance;
+        Quaternion orbitRotation =
+            Quaternion.Euler(0f, player.eulerAngles.y + orbitAngle, 0f);
+
+        Vector3 orbitOffset = orbitRotation * Vector3.forward * holdDistance;
 
         Vector3 desiredPos = new Vector3(
-            player.position.x + holdOffset.x + safeForward.x,
+            player.position.x + orbitOffset.x + safeForward.x,
             topY,
-            player.position.z + holdOffset.z + safeForward.z
+            player.position.z + orbitOffset.z + safeForward.z
         );
 
         ghostObject.transform.position = desiredPos;
@@ -163,7 +190,7 @@ public class MoveObject : MonoBehaviour
 
         currentX = Mathf.Clamp(currentX, 0f, 180f);
 
-        float finalY = player.eulerAngles.y + currentY;
+        float finalY = player.eulerAngles.y + orbitAngle + currentY;
 
         ghostObject.transform.rotation =
             Quaternion.Euler(currentX, finalY, 0f);

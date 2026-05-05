@@ -119,13 +119,6 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitButton()
     {
-        if(SceneManager.GetActiveScene().name != "Hub")
-        {
-            SceneManager.LoadScene("Hub");
-        }
-        else
-        {
-            SceneManager.LoadScene("Main Menu");
-        }
+        Application.Quit();
     }
 }

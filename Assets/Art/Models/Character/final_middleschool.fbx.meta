@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 6cc141e7328c34683bcdc579d6b11c04
+<<<<<<< HEAD:Assets/Art/Menu/Models/Character/final_middleschool.fbx.meta
+guid: ad47742815a4b4b248790281ac25b8d8
+=======
+guid: e8782a19648454ec38eed48b87d223b1
+>>>>>>> baedd0fcf421c41e14b1df39015acd1d8179ad2c:Assets/Art/Models/Character/final_middleschool.fbx.meta
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -22,7 +26,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -98,9 +102,9 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 3
+  animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

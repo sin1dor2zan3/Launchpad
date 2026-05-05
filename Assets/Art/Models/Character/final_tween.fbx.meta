@@ -1,9 +1,77 @@
 fileFormatVersion: 2
-guid: ad47742815a4b4b248790281ac25b8d8
+<<<<<<< HEAD:Assets/Art/Menu/Models/Character/final_tween.fbx.meta
+guid: 8f544ae8b3c5b4fb7ac7e6dcc1d811ee
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
   externalObjects: {}
+=======
+guid: a20daf1b6419e48edb9ed4ae15ba0527
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface1
+    second: {fileID: 2100000, guid: 4d0fcd8b83d424022ac47b764fd2663a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface10
+    second: {fileID: 2100000, guid: 8c26f198000254a1eaba0fd9ae54ce0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface11
+    second: {fileID: 2100000, guid: 52f5544d392dd4204a803bbcce01d13f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface12
+    second: {fileID: 2100000, guid: ff59e5a7f74d94331b052c0066350770, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface2
+    second: {fileID: 2100000, guid: 930c7bc47ccaf4feb9a7b52e91a48263, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface4
+    second: {fileID: 2100000, guid: 85a3d4496434146bf976a8143b34952e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface5
+    second: {fileID: 2100000, guid: fbdf0e72794814878a1863cda3e8b817, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface6
+    second: {fileID: 2100000, guid: 9ab39de1a0f8341ce861fa791c556772, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface7
+    second: {fileID: 2100000, guid: 41325b849cbe549bc90c2bfd24fa26b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface8
+    second: {fileID: 2100000, guid: 732650a87368c4bdf97bb95df88e3751, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface9
+    second: {fileID: 2100000, guid: 119d1fd379ade4589a11ecebc754ced3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pupils
+    second: {fileID: 2100000, guid: d1f6a5dcbba3e4a81ad3922ebb5e7afd, type: 2}
+>>>>>>> baedd0fcf421c41e14b1df39015acd1d8179ad2c:Assets/Art/Models/Character/final_tween.fbx.meta
   materials:
     materialImportMode: 2
     materialName: 0

@@ -224,15 +224,15 @@ RectTransform:
   m_GameObject: {fileID: 62518465}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7098942, y: 1.7098942, z: 1.7098942}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1273047643}
-  m_Father: {fileID: 904871939}
+  m_Father: {fileID: 625933003}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 426.0001, y: -243.99997}
+  m_AnchoredPosition: {x: 777.3628, y: -479.89133}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &62518467
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 478205613}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &256061809
@@ -1505,6 +1505,7 @@ RectTransform:
   - {fileID: 1707680106}
   - {fileID: 212796189}
   - {fileID: 1306489977}
+  - {fileID: 62518466}
   - {fileID: 904871939}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1844,7 +1845,7 @@ RectTransform:
   m_GameObject: {fileID: 889195526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7098941, y: 1.7098941, z: 1.7098941}
+  m_LocalScale: {x: 1.7961905, y: 1.6866826, z: 1.7098941}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 625933003}
@@ -1951,23 +1952,23 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Aidan Huggins ~ Programmer, Designer
 
-    
 
-    Jacob Kuhlman - UI/UX
-    Designer
 
-    
+    Jacob Kuhlman - UI/UX Designer
 
-    Josiah Song - Level Designer
 
-    
 
-    Paola Suro -
-    Artist
+    Josiah
+    Song - Level Designer
 
-    
 
-    Sinclair Zanfardino - Project Manager, Artist'
+
+    Paola Suro - Artist
+
+
+
+    Sinclair Zanfardino -
+    Project Manager, Artist'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2079,7 +2080,6 @@ Transform:
   - {fileID: 478205614}
   - {fileID: 1388212201}
   - {fileID: 1486100301}
-  - {fileID: 62518466}
   m_Father: {fileID: 625933003}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1057132063
@@ -3879,10 +3879,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 345052939}
   m_HandleRect: {fileID: 1740481689}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0.0001
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

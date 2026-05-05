@@ -6240,16 +6240,6 @@ RectTransform:
   m_AnchoredPosition: {x: 830, y: 509}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &739246219 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-  m_PrefabInstance: {fileID: 1691189448}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &739246220 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-  m_PrefabInstance: {fileID: 1691189448}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &747468715 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -629040171299544851, guid: 806a9cc466bbe7445ac511bca3150b3f, type: 3}
@@ -13714,44 +13704,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.009081373, y: 0.009547706, z: 0.009716326}
   m_Center: {x: 0.00014211892, y: 0.005337117, z: 0.00019097286}
---- !u!1 &1617436970 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8859211342575829092, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-  m_PrefabInstance: {fileID: 8477238040100073955}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1617436971
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1617436970}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-  m_Controller: {fileID: 9100000, guid: efe595811eb9d462ca0a6fa69dab25de, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-    'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
-    'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
-    'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
-    'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'mixamo.com'"
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!4 &1617436978 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8194842043796183774, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-  m_PrefabInstance: {fileID: 8477238040100073955}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1617697076
 GameObject:
   m_ObjectHideFlags: 0
@@ -14166,78 +14118,6 @@ MonoBehaviour:
   highlightInvalid: {r: 1, g: 0, b: 0, a: 1}
   isOccupied: 0
   occupyingItem: {fileID: 0}
---- !u!1001 &1691189448
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1617436978}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.003
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.0015
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.0057
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-      propertyPath: m_Name
-      value: babypickup
-      objectReference: {fileID: 0}
-    - target: {fileID: 5866666021909216657, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: efe595811eb9d462ca0a6fa69dab25de, type: 2}
-    - target: {fileID: 5866666021909216657, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-      propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
-        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
-        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
-        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'mixamo.com'"
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 3306512618393000541, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0fc3a667e412c469082174a77cb3dde3, type: 3}
 --- !u!1 &1702977583
 GameObject:
   m_ObjectHideFlags: 0
@@ -17132,10 +17012,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7178810316447944782, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 739246220}
     - target: {fileID: 7462292846086097691, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
       propertyPath: headOffset
       value: -0.5
@@ -17213,25 +17089,9 @@ PrefabInstance:
       value: final_baby
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 8282905974635938633, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-    - {fileID: 5425682747035414038, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-    - {fileID: 4337712458452345379, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-    - {fileID: 639317816797039884, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-    - {fileID: 3708979624591874503, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-    - {fileID: 2951090681869021362, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-    - {fileID: 51147740845840299, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-    - {fileID: 8148941541917188371, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-    - {fileID: 438190376522560601, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-    - {fileID: 1335694056299664302, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8194842043796183774, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 739246219}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8859211342575829092, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1617436971}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b792f26c5ec0b4aa69fc0c10fb45743d, type: 3}
 --- !u!1001 &8755971156681422001
 PrefabInstance:

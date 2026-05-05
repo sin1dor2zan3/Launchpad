@@ -10,11 +10,19 @@ public class HubLevelSelector : MonoBehaviour
 
     private bool isLoading = false;
 
+    private PlayerMovement playerMovement;
+
+    private void Start()
+    {
+        playerMovement = FindAnyObjectByType<PlayerMovement>();
+    }
+
     private void Update()
     {
         if (isLoading) return;
+        if (playerMovement == null) return;
 
-        if (PlayerMovement.levelCount >= 4)
+        if (playerMovement.levelCount >= 4)
         {
             isLoading = true;
             SceneManager.LoadScene("Win Screen");
@@ -25,33 +33,23 @@ public class HubLevelSelector : MonoBehaviour
     {
         if (isLoading) return;
 
-        string tag = other.tag;
+        string sceneToLoad = GetSceneFromTag(other.tag);
 
-        if (tag == "Level1" && PlayerMovement.levelCount == 0 && !PlayerMovement.levelCompleted[0])
-        {
-            LoadLevel(level1Scene);
-        }
-        else if (tag == "Level2" && PlayerMovement.levelCount == 1 && !PlayerMovement.levelCompleted[1])
-        {
-            LoadLevel(level2Scene);
-        }
-        else if (tag == "Level3" && PlayerMovement.levelCount == 2 && !PlayerMovement.levelCompleted[2])
-        {
-            LoadLevel(level3Scene);
-        }
-        else if (tag == "Level4" && PlayerMovement.levelCount == 3 && !PlayerMovement.levelCompleted[3])
-        {
-            LoadLevel(level4Scene);
-        }
-        else
-        {
-            Debug.Log("Level locked or already completed!");
-        }
+        if (string.IsNullOrEmpty(sceneToLoad)) return;
+
+        isLoading = true;
+        SceneManager.LoadScene(sceneToLoad);
     }
 
-    private void LoadLevel(string sceneName)
+    private string GetSceneFromTag(string tag)
     {
-        isLoading = true;
-        SceneManager.LoadScene(sceneName);
+        switch (tag)
+        {
+            case "Level1": return level1Scene;
+            case "Level2": return level2Scene;
+            case "Level3": return level3Scene;
+            case "Level4": return level4Scene;
+            default: return "";
+        }
     }
 }

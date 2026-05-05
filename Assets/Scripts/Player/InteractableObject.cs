@@ -13,6 +13,10 @@ public class InteractableObject : MonoBehaviour
     public static int totalObjectsPickedUp = 0;
 
     private Transform player;
+    private PickupHighlight highlight;
+
+    private bool isPlayerClose = false;
+    private bool isPickedUp = false;
 
     private void Start()
     {
@@ -22,11 +26,31 @@ public class InteractableObject : MonoBehaviour
             player = p.transform;
         else
             Debug.LogError("PLAYER TAG NOT FOUND!");
+
+        highlight = GetComponent<PickupHighlight>();
+
+        if (highlight == null)
+        {
+            highlight = gameObject.AddComponent<PickupHighlight>();
+        }
     }
 
     void Update()
     {
         if (player == null) return;
+
+        float distance = Vector3.Distance(transform.position, player.position);
+        isPlayerClose = distance <= interactDistance;
+
+        // Highlight when player is close, unless item is already picked up
+        if (isPlayerClose || isPickedUp)
+        {
+            highlight.TurnHighlightOn();
+        }
+        else
+        {
+            highlight.TurnHighlightOff();
+        }
 
         bool interactPressed =
             (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame) ||
@@ -34,11 +58,9 @@ public class InteractableObject : MonoBehaviour
 
         if (!interactPressed) return;
 
-        float distance = Vector3.Distance(transform.position, player.position);
-
         Debug.Log($"Interact attempt | Distance: {distance}");
 
-        if (distance <= interactDistance)
+        if (isPlayerClose)
         {
             Interact();
         }
@@ -57,9 +79,19 @@ public class InteractableObject : MonoBehaviour
         }
 
         InventoryManager.Instance.SetHeldItem(gameObject);
+
+        isPickedUp = true;
+        highlight.TurnHighlightOn();
+
         InventoryManager.Instance.ToggleInventory();
         totalObjectsPickedUp++;
 
         Debug.Log("Interacted with: " + name);
+    }
+
+    public void RemoveHighlight()
+    {
+        isPickedUp = false;
+        highlight.TurnHighlightOff();
     }
 }

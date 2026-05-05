@@ -4,9 +4,14 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement")]
     public float moveSpeed = 5f;
     public float gravity = -9.8f;
 
+    [Header("Camera")]
+    public Transform cameraTransform;
+
+    [Header("Progression")]
     public int itemsNeededToFinish = 10;
     public static int levelCount = 0;
     public static bool[] levelCompleted = new bool[4];
@@ -33,12 +38,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+        // CAMERA-RELATIVE MOVEMENT
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
 
-        // MOVE
+        forward.y = 0f;
+        right.y = 0f;
+
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 move = forward * moveInput.y + right * moveInput.x;
+
         controller.Move(move * moveSpeed * Time.deltaTime);
 
-        // ROTATE (smoothly face movement direction)
+        // ROTATE PLAYER TOWARD MOVEMENT
         if (move.magnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(move);

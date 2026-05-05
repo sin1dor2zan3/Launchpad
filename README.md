@@ -2,7 +2,7 @@
 
 ## Bad Ideas Studios
 
-#### Launchpad Project ReadMe v0.4a
+#### Launchpad Project ReadMe v1.0
 
 
 
@@ -14,7 +14,7 @@ GitHub Link - https://github.com/sin1dor2zan3/Launchpad
 
 
 
-* Collect all nine toys and return them to the toy box. Use planks to your advantage to reach higher areas.
+* Collect all of the items necessary to complete each level. Be careful, as you have limited space to carry stuff!
 
 
 

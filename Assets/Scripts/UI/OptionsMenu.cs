@@ -7,6 +7,8 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        // Convert linear (0.0001–1) to logarithmic dB scale
+        float dB = Mathf.Log10(volume) * 20;
+        audioMixer.SetFloat("volume", dB);
     }
 }

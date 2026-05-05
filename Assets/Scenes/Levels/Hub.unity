@@ -1186,7 +1186,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: b2ad46a4e8ad2ce448b98189014af3bc, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 0e852acf5b5e1c140b86430a78075100, type: 3}
+  m_Resource: {fileID: 8300000, guid: a511ee6e28f9f5544b091320b83f9a8a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -5849,10 +5849,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1144559892}
   m_HandleRect: {fileID: 967286753}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
